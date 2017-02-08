@@ -31,19 +31,19 @@ public class Lab2_prob4 {
     int guessDigit3 = leftoverDigits1 % 10;
     
     System.out.println("The lottery number is: " + lottery);
-    
+    int match;
+
     //Check guess
     if (guess == lottery) {
-      System.out.println("Exact match: you win $10,000");
+      match = 0;
     }
 
     else if ((guessDigit1 == lotteryDigit2 && guessDigit2 == lotteryDigit3 && guessDigit3 == lotteryDigit1)
              || (guessDigit1 == lotteryDigit2 && guessDigit2 == lotteryDigit1 && guessDigit3 == lotteryDigit3) 
              || (guessDigit1 == lotteryDigit3 && guessDigit2 == lotteryDigit2 && guessDigit3 == lotteryDigit1)
              || (guessDigit1 == lotteryDigit1 && guessDigit2 == lotteryDigit3 && guessDigit3 == lotteryDigit2)
-             || (guessDigit1 == lotteryDigit3 && guessDigit2 == lotteryDigit1 && guessDigit3 == lotteryDigit2))      
-     {
-      System.out.println("Match all digits: you win $3,000!");
+             || (guessDigit1 == lotteryDigit3 && guessDigit2 == lotteryDigit1 && guessDigit3 == lotteryDigit2)){
+      match = 1;
     }
     
     else if (guessDigit1 == lotteryDigit1 
@@ -55,12 +55,19 @@ public class Lab2_prob4 {
              || guessDigit3 == lotteryDigit1
              || guessDigit3 == lotteryDigit2
              || guessDigit3 == lotteryDigit3) {
-      System.out.println("Match one digit: you win $1,000!");
+      match = 2;
     } 
     
     else {
-      System.out.println("Sorry, no match!");
+      match = 3;
+    }
+    
+    // use switch statements to print program output
+    switch (match){
+      case 0: System.out.println("Exact match: you win $10,000"); break; 
+      case 1: System.out.println("Match all digits: you win $3,000!"); break;
+      case 2: System.out.println("Match one digit: you win $1,000!"); break;
+      case 3: System.out.println("Sorry, no match!"); break;
     }
   }
 }
-  
