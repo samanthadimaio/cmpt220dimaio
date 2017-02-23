@@ -25,7 +25,6 @@ public class Driver_Lab3 {
     int testcase = 0;
    
     while (testcase <= 1000) {
-    
       System.out.print("Enter the coordinates & value of p to calculate the p-norm distance between a pair of points " +
                        "\nExample Entry: (x1  x2  y1  y2  p) --> (1.0 1.0 2.0 2.0 2.0) *Stops when entry is 0* :");
       x1 = input.nextDouble();
@@ -38,17 +37,17 @@ public class Driver_Lab3 {
     
       if (x1 != 0){
         if ((x1 > 0 && x1 <= 100) && (x2 > 0 && x2 <= 100) 
-            && (y1 > 0 && y1 <= 100) && (y2 > 0 && y2 <= 100) && (p > 0 && p <= 100)){
+          && (y1 > 0 && y1 <= 100) && (y2 > 0 && y2 <= 100) && (p > 0 && p <= 100)){
            
           distance = Math.pow(Math.pow((Math.abs(x1-x2)),p) + Math.pow((Math.abs(y1-y2)),p),(1/p));
           
-            System.out.printf("Distance is: %.10f\n", distance); 
+          System.out.printf("Distance is: %.10f\n", distance); 
 	      testcase++;
 	    }
       }
-	    else {
-	      break;
-	    }
+      else {
+        break;
+	  }
 	}
   }
 }
