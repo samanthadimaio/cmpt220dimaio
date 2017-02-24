@@ -36,18 +36,16 @@ public class Driver_Lab3 {
       p = input.nextDouble();
     
       if (x1 != 0){
-        if ((x1 > 0 && x1 <= 100) && (x2 > 0 && x2 <= 100) && (y1 > 0 && y1 <= 100) && (y2 > 0 && y2 <= 100) && (p > 0 && p <= 100)){
-          distance = Math.pow(Math.pow((Math.abs(x1-x2)),p) + Math.pow((Math.abs(y1-y2)),p),(1/p));
+        distance = Math.pow(Math.pow((Math.abs(x1-x2)),p) + Math.pow((Math.abs(y1-y2)),p),(1/p));
           
-          System.out.printf("Distance is: %.10f\n", distance); 
-          testcase++;
-	    }
+        System.out.printf("Distance is: %.10f\n", distance); 
+        testcase++;
       }
       
-        else {
-          break;
-        }
+      else {
+        break;
       }
+    }
   }
 }
 
