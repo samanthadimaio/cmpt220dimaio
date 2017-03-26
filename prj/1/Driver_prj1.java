@@ -3,7 +3,7 @@
  * author: Samantha DiMaio
  * course: CMPT 220
  * assignment: project 1: CONVOLUTION
- * due date: January 26, 2017
+ * due date: March 30, 2017
  * version: 1.8
  *
  * This file contains project 1: CONVOLUTION
