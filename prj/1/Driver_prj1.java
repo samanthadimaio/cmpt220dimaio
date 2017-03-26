@@ -31,7 +31,10 @@ public class Driver_prj1 {
     
     double[] result = convolveVectors(vFirst, vSecond);
     
-    System.out.println(result);
+    for (x = 0; x < result.length; x++) {
+      System.out.print((Math.round(result[x])) + " ");
+    }
+    System.out.println();
     
   }
   public static double[] convolveVectors(double[] vFirst, double[] vSecond) {
