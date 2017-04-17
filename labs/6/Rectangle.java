@@ -36,16 +36,16 @@ class Rectangle {
 |                  Rectangle                    |
 |-----------------------------------------------|
 | width: double                                 |
-|											    |
-| height: double							    |
-|											    |
-| Rectangle()								    | 
+|                                               |
+| height: double                                |
+|                                               |
+| Rectangle()                                   | 
 |											    |
 | Rectangle(newWidth: double, newHeight: double)|
-|												|
-| getArea(): double                				|
-|												|
-| getPerimeter(): double 						|
+|                                               |
+| getArea(): double                             |
+|                                               |
+| getPerimeter(): double                        |
 |-----------------------------------------------|
 */
 }
