@@ -12,61 +12,60 @@
 
 //import packages
 import java.util.Scanner;
-import java.awt.*
-import java.awt.image.*
+import java.awt.*;
+import java.awt.image.*;
 
 //had to import packages that reads/loads image file
 import java.io.*;         //File()
 import javax.imageio.*;   //imageIO
+import java.applet.Applet;
 
+public class ImageBlur extends Applet { //subclass of Java's Object ----> Component
 
-public class ImageBlur extends Object() //subclass of Java's Object 
+  BufferedImage image; // class variable 
 
-  private BufferedImage image; // class variable 
-
-  float[] elements = { .1111f, .1111f, .1111f, 
-                         .1111f, .1111f, .1111f,   //elements for convolution
-                         .1111f, .1111f, .1111f};
-                         
+  //float[] elements = { .1111f, .1111f, .1111f, 
+    //                     .1111f, .1111f, .1111f,   //elements for convolution
+     //                    .1111f, .1111f, .1111f};
+  
+  public void create(Graphics g) { //method to design image
+    g.drawImage(image, 0, 0, null); 
+  }
+  
+   //draw original image
+    //load the blurred image
+    //create adding text feature
+    //create desired blur amount feature
+  
   public static void main(String[] args) { //main method
     //create object instance for setting up the window frame
     //ask user for dimensions of their image
     Scanner input = new Scanner(System.in);
-    System.out.println("Enter the width of the image: ");
+    System.out.print("Enter the width of the image: ");
     int w = input.nextInt();
-    System.out.println("Enter the height of the image: ");
+    System.out.print("Enter the height of the image: ");
     int h = input.nextInt();
     
     Frame window = new Frame("ImageBlur");
-    f.setSize(new Dimension(w,h));
-    f.setVisible(true);  //method takes in boolean value to set Frame visible or not
-    
-  }
+    window.add("Center", new ImageBlur());
+    window.setSize(new Dimension(w,h));
+    window.setVisible(true);  //method takes in boolean value to set Frame visible or not
+  }    
   
-  public ImageBlur() { //constructor 
+  public ImageBlur() {
     Scanner input = new Scanner(System.in);
-    
-    setBackground(color.black) // insert optional background color? 
-    
-    BufferedImage pic = null;
-    
-    System.out.print("Enter the file name of your image: ") //ask user for file !name! of image 
-    String name = input.next()
-    
-    try {
-      pic = ImageIO.read(new File(name));
-    }                                         //reading the image file  	,      
-    catch (IOException e) {
-    }
-    
-    image = new BufferedImage(img.getWidth(this), img.getHeight(this), //type?)
-         
-    //draw the original image
-  }
-  
-  public void create(Graphics g) { //method to design image
 
-    //load the blurred image
-    //create adding text feature
-    //create desired blur amount feature
+    setBackground(Color.pink); //set Background color
+    System.out.print("Enter the file name of your image: "); //ask user for file !name! of image 
+    String name = input.next();   
+        
+    try {
+      image = ImageIO.read(new File(name));                   
+    } catch (IOException e) {
+    }             
+  } 
+  
+  public Dimension getPreferredSize() {
+    return new Dimension(image.getWidth(null), image.getHeight(null)); 
   }
+}
