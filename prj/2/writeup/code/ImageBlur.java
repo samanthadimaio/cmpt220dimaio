@@ -24,18 +24,9 @@ public class ImageBlur extends Applet { //subclass of Java's Object ----> Compon
 
   BufferedImage image; // class variable 
 
-  //float[] elements = { .1111f, .1111f, .1111f, 
-    //                     .1111f, .1111f, .1111f,   //elements for convolution
-     //                    .1111f, .1111f, .1111f};
-  
-  public void create(Graphics g) { //method to design image
-    g.drawImage(image, 0, 0, null); 
-  }
-  
-   //draw original image
-    //load the blurred image
-    //create adding text feature
-    //create desired blur amount feature
+  float[] elements = { .1111f, .1111f, .1111f, 
+                       .1111f, .1111f, .1111f,   //elements for convolution
+                       .1111f, .1111f, .1111f};
   
   public static void main(String[] args) { //main method
     //create object instance for setting up the window frame
@@ -55,17 +46,34 @@ public class ImageBlur extends Applet { //subclass of Java's Object ----> Compon
   public ImageBlur() {
     Scanner input = new Scanner(System.in);
 
-    setBackground(Color.pink); //set Background color
+    setBackground(Color.pink); //set Background color to pink... make optional?
+    
     System.out.print("Enter the file name of your image: "); //ask user for file !name! of image 
     String name = input.next();   
         
     try {
       image = ImageIO.read(new File(name));                   
     } catch (IOException e) {
-    }             
-  } 
-  
-  public Dimension getPreferredSize() {
-    return new Dimension(image.getWidth(null), image.getHeight(null)); 
+    }
+    
+    image.drawImage(image, 0, 0, this); //drawing original image           
   }
+  
+  public void create(Graphics g) { //method to design image
+    g.drawImage(image, 0, 0, null);
+    
+    //make new buffered image for the blur 
+    BufferedImage blur = new BufferedImage(image.getHeight(this), image.getHeight(this), BufferedImage.TYPE_INT_RGB);
+    
+    
+    //use convolve op? & kernal methods to blur image
+    //figure out what method to use to apply the methods
+    
+    //draw image again?
+    //load the blurred image
+    //create adding text feature
+    //create desired blur amount feature
+  }
+  
 }
+
