@@ -24,7 +24,7 @@ public class ImageBlur extends Applet { //subclass of Java's Object ----> Compon
 
   private BufferedImage image; // class variable 
   
-  private float elements = 
+  private float elements = {.111, .111, .111, 
   
   public static void main(String[] args) { //main method
     System.out.println("Welcome to Image Expression!");
@@ -53,14 +53,19 @@ public class ImageBlur extends Applet { //subclass of Java's Object ----> Compon
         
     try {
       image = ImageIO.read(new File(name));                   
-    } catch (IOException e) {
+    } 
+    catch (IOException e) {
     }
     
-    image.drawImage(image, 0, 0, this); //drawing original image           
+    image = new BufferedImage(image.getWidth(this), image.getHeight(this), BufferedImage.TYPE_INT_RGB); //creating Buffered Image with width and height
+    
+    Graphics2D x; //Graphics 2D variable
+    x = image.createGraphics();  //creates image & enables drawing on image 
+    
+    image.drawImage(image, 0, 0, this); //drawing original image 
   }
   
   public void create(Graphics g) { //method to design image
-    g.drawImage(image, 0, 0, null);
     
 
     BufferedImage blur = new BufferedImage(image.getHeight(this), image.getHeight(this), BufferedImage.TYPE_INT_RGB); //make new buffered image for the blur
@@ -71,14 +76,20 @@ public class ImageBlur extends Applet { //subclass of Java's Object ----> Compon
     //find method to apply convolveOP
     
     System.out.println("If you would like your image to have SUPER blur, enter 1");
+    System.out.println("If not, enter 2");
+    
     int superBlur = input.nextInt()
     
-    if (superBlur == 1)
+    if (superBlur == 1) {
+    }
       //to get super blur -- make a for loop that will change the pixels
-      
+    
+    else if (superBlur == 2) {
+    }
     //draw image again?
     //load the blurred image
     //create adding text feature
+    //use Graphics2D & draw string method
     //create desired blur amount feature
   }
   
