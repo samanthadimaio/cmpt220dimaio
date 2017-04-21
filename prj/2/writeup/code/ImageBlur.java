@@ -22,28 +22,28 @@ import java.applet.Applet;
 
 public class ImageBlur extends Applet { //subclass of Java's Object ----> Component
 
-  BufferedImage image; // class variable 
-
-  float[] elements = { .1111f, .1111f, .1111f, 
-                       .1111f, .1111f, .1111f,   //elements for convolution
-                       .1111f, .1111f, .1111f};
+  private BufferedImage image; // class variable 
+  
+  private float elements = 
   
   public static void main(String[] args) { //main method
+    System.out.println("Welcome to Image Expression!");
+    
     //create object instance for setting up the window frame
     //ask user for dimensions of their image
     Scanner input = new Scanner(System.in);
     System.out.print("Enter the width of the image: ");
-    int w = input.nextInt();
+    int w = input.nextInt();                                
     System.out.print("Enter the height of the image: ");
     int h = input.nextInt();
     
-    Frame window = new Frame("ImageBlur");
-    window.add("Center", new ImageBlur());
-    window.setSize(new Dimension(w,h));
+    Frame window = new Frame("ImageBlur");     //Calling Frame class from Applet 
+    window.add("Center", new ImageBlur()); //
+    window.setSize(new Dimension(w,h));   //
     window.setVisible(true);  //method takes in boolean value to set Frame visible or not
   }    
   
-  public ImageBlur() {
+  public ImageBlur() {   //constructor
     Scanner input = new Scanner(System.in);
 
     setBackground(Color.pink); //set Background color to pink... make optional?
@@ -62,13 +62,20 @@ public class ImageBlur extends Applet { //subclass of Java's Object ----> Compon
   public void create(Graphics g) { //method to design image
     g.drawImage(image, 0, 0, null);
     
-    //make new buffered image for the blur 
-    BufferedImage blur = new BufferedImage(image.getHeight(this), image.getHeight(this), BufferedImage.TYPE_INT_RGB);
+
+    BufferedImage blur = new BufferedImage(image.getHeight(this), image.getHeight(this), BufferedImage.TYPE_INT_RGB); //make new buffered image for the blur
+                                         //use convolve op? & kernel methods to blur image
+                                         
+    Kernel k = new Kernal(0, 0, elements) //figure out width and height to use for kernel method
+    ConvolveOp convolve = new ConvolveOP(k) //convolve method takes in the kernel     
+    //find method to apply convolveOP
     
+    System.out.println("If you would like your image to have SUPER blur, enter 1");
+    int superBlur = input.nextInt()
     
-    //use convolve op? & kernal methods to blur image
-    //figure out what method to use to apply the methods
-    
+    if (superBlur == 1)
+      //to get super blur -- make a for loop that will change the pixels
+      
     //draw image again?
     //load the blurred image
     //create adding text feature
