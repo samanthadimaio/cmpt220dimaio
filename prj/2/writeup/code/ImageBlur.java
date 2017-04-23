@@ -32,9 +32,25 @@ public class ImageBlur extends Applet { //subclass of Java's Object ----> Compon
     System.out.println("Welcome to Image Expression!");
     System.out.println("----------------------------");
     
-    //make switch statements for color of background
-    
     Scanner input = new Scanner(System.in);
+    
+    System.out.println("What color would you like as your background?");
+    System.out.println("Type in: black, white, cyan, red, pink, yellow, green, blue, or orange:  ");
+    String color = input.next();
+    Color choice = new Color(0,0,0);
+    
+    switch (color.toLowerCase()) {
+     case "cyan": choice = Color.cyan; break;
+     case "pink": choice = Color.pink; break;
+     case "white": choice = Color.white; break;
+     case "red": choice = Color.red; break;               //make switch statements for color of background
+     case "black": choice = Color.black; break;
+     case "yellow": choice = Color.yellow; break;
+     case "green": choice = Color.green; break;
+     case "blue": choice = Color.blue; break;
+     case "orange": choice = Color.orange; break;
+    }
+
     System.out.print("Enter the width of the window: ");   
     int w = input.nextInt();                                 //ask user for dimensions of their image       
     System.out.print("Enter the height of the window: ");
@@ -43,7 +59,7 @@ public class ImageBlur extends Applet { //subclass of Java's Object ----> Compon
     
     Frame window = new Frame("ImageBlur");     //Calling Frame class from Applet 
                                               //create object instance for setting up the window frame
-    //window.setBackground(Color.?);          //calling color class to set color
+    window.setBackground(choice);          //calling color class to set color
     window.add("Center", new ImageBlur()); //
     window.setSize(new Dimension(w,h));   //
     window.setVisible(true);  //method takes in boolean value to set Frame visible or not
@@ -92,15 +108,12 @@ public class ImageBlur extends Applet { //subclass of Java's Object ----> Compon
     ConvolveOp c = new ConvolveOp(k);
     c.filter(image, blur);
 
-
     Graphics2D create = (Graphics2D) g;
     create.drawImage(blur, 0, 0, this);
     
     //draw image again?
-    //load the blurred image
     //create adding text feature
     //use Graphics2D & draw string method
-    //create desired blur amount feature
   }
 
 }
