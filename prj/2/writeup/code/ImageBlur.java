@@ -35,9 +35,9 @@ public class ImageBlur extends Applet { //subclass of Java's Object ----> Compon
     //make switch statements for color of background
     
     Scanner input = new Scanner(System.in);
-    System.out.print("Enter the width of the image: ");   
+    System.out.print("Enter the width of the window: ");   
     int w = input.nextInt();                                 //ask user for dimensions of their image       
-    System.out.print("Enter the height of the image: ");
+    System.out.print("Enter the height of the window: ");
     int h = input.nextInt();
     
     
@@ -72,22 +72,27 @@ public class ImageBlur extends Applet { //subclass of Java's Object ----> Compon
     BufferedImage blur = new BufferedImage(image.getWidth(this), image.getWidth(this),BufferedImage.TYPE_INT_RGB); //make new buffered image for the blur
 
     Scanner input = new Scanner(System.in);
-    System.out.print("If you would like your image to have SUPER blur, enter 1; if not, enter 2");
+    System.out.println("If you would like your image to have SUPER blur, enter 1, if not enter 2: ");
     int superBlur = input.nextInt();
     
+    Kernel k = new Kernel(0, 0, elements); 
     
     if (superBlur == 1) {
-      //to get super blur -- make a for loop that will change the pixels
+      elements = new float[400];                                        
+      for (int i = 0; i < 400; i++)        // puts extreme blur 
+        elements[i] = 1.0f/400.0f;      //to get super blur -- make a for loop that will change the pixels
+    
+      k = new Kernel(20, 20, elements);
     }
     
-    else if (superBlur == 2) {
-      Kernel k = new Kernel(3, 3, elements); 
-      ConvolveOp c = new ConvolveOp(k);               //declaring method to blur based off Kernel
-      c.filter(image, blur);
+    else {
+      k = new Kernel(3, 3, elements);
     }
-
-
     
+    ConvolveOp c = new ConvolveOp(k);
+    c.filter(image, blur);
+
+
     Graphics2D create = (Graphics2D) g;
     create.drawImage(blur, 0, 0, this);
     
