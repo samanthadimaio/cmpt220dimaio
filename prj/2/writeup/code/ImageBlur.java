@@ -32,6 +32,8 @@ public class ImageBlur extends Applet { //subclass of Java's Object ----> Compon
     System.out.println("Welcome to Image Expression!");
     System.out.println("----------------------------");
     
+    //make switch statements for color of background
+    
     Scanner input = new Scanner(System.in);
     System.out.print("Enter the width of the image: ");   
     int w = input.nextInt();                                 //ask user for dimensions of their image       
@@ -40,14 +42,14 @@ public class ImageBlur extends Applet { //subclass of Java's Object ----> Compon
     
     
     Frame window = new Frame("ImageBlur");     //Calling Frame class from Applet 
-                                               //create object instance for setting up the window frame
-    window.setBackground(Color.cyan);          //calling color class to set color
+                                              //create object instance for setting up the window frame
+    //window.setBackground(Color.?);          //calling color class to set color
     window.add("Center", new ImageBlur()); //
     window.setSize(new Dimension(w,h));   //
     window.setVisible(true);  //method takes in boolean value to set Frame visible or not
   }    
   
-  public ImageBlur() {   //constructor
+  public ImageBlur() {   //constructor of ImageBlur class
     Scanner input = new Scanner(System.in);
     System.out.print("Enter the file name of your image: "); //ask user for file !name! of image 
     String name = input.next();   
@@ -65,28 +67,28 @@ public class ImageBlur extends Applet { //subclass of Java's Object ----> Compon
     x.drawImage(pic,0,0,this); //drawing original image (pic) with conditions of image 
   }
   
-  public void paint(Graphics g) { //PAINT method must be used to design image using the Graphics class
-  
-    Graphics2D create = (Graphics2D) g; 
+  public void paint(Graphics g) { //PAINT method must be used to design image using the Graphics class 
     
     BufferedImage blur = new BufferedImage(image.getWidth(this), image.getWidth(this),BufferedImage.TYPE_INT_RGB); //make new buffered image for the blur
-           
-    //System.out.println("If you would like your image to have SUPER blur, enter 1");
-    //System.out.println("If not, enter 2");
+
+    Scanner input = new Scanner(System.in);
+    System.out.print("If you would like your image to have SUPER blur, enter 1; if not, enter 2");
+    int superBlur = input.nextInt();
     
-    //int superBlur = input.nextInt()
     
-    //if (superBlur == 1) {
-    //}
+    if (superBlur == 1) {
       //to get super blur -- make a for loop that will change the pixels
+    }
     
-    //else if (superBlur == 2) {
-    //}
-        
-	Kernel k = new Kernel(3, 3, elements); 
-    ConvolveOp c = new ConvolveOp(k);               //declaring method to blur based off Kernal
-    c.filter(image, blur);
+    else if (superBlur == 2) {
+      Kernel k = new Kernel(3, 3, elements); 
+      ConvolveOp c = new ConvolveOp(k);               //declaring method to blur based off Kernel
+      c.filter(image, blur);
+    }
+
+
     
+    Graphics2D create = (Graphics2D) g;
     create.drawImage(blur, 0, 0, this);
     
     //draw image again?
