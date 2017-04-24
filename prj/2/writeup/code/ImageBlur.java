@@ -28,7 +28,7 @@ public class ImageBlur extends Applet { //subclass of Java's Object ----> Compon
                               .1111f, .1111f, .1111f,
                               .1111f, .1111f, .1111f};  
   
-  public static void main(String[] args) {       //main method
+  public static void main(String[] args) {       //main method all about the window
     System.out.println("Welcome to Image Expression!");
     System.out.println("----------------------------");
     
@@ -67,7 +67,7 @@ public class ImageBlur extends Applet { //subclass of Java's Object ----> Compon
   
   public ImageBlur() {   //constructor of ImageBlur class
     Scanner input = new Scanner(System.in);
-    System.out.print("Enter the file name of your image: "); //ask user for file !name! of image 
+    System.out.print("Enter the file name of your image: "); //ask user for filename of image 
     String name = input.next();   
     
     BufferedImage pic = null;
@@ -111,9 +111,27 @@ public class ImageBlur extends Applet { //subclass of Java's Object ----> Compon
     Graphics2D create = (Graphics2D) g;
     create.drawImage(blur, 0, 0, this);
     
-    //draw image again?
-    //create adding text feature
-    //use Graphics2D & draw string method
+    System.out.println("Enter the text you would like on your image:");
+    String words = input.next();
+    
+    System.out.println("What color would you like as your text color?");
+    System.out.println("Type in: black, white, cyan, red, pink, yellow, green, blue, or orange:  ");
+    String color = input.next();
+    Color choice = new Color(0,0,0);
+    
+    switch (color.toLowerCase()) {
+      case "cyan": choice = Color.cyan; break;
+      case "pink": choice = Color.pink; break;
+      case "white": choice = Color.white; break;
+      case "red": choice = Color.red; break;               //make switch statements for color of text
+      case "black": choice = Color.black; break;
+      case "yellow": choice = Color.yellow; break;
+      case "green": choice = Color.green; break;
+      case "blue": choice = Color.blue; break;
+      case "orange": choice = Color.orange; break;
+    }
+    
+    create.setColor(choice);
+    create.drawString(words, 20, 20);
   }
-
 }
