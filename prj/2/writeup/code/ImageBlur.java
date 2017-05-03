@@ -26,8 +26,16 @@ public class ImageBlur extends Applet { //subclass of Java's Object ----> Compon
   
   private float[] elements = {.1111f, .1111f, .1111f, 
                               .1111f, .1111f, .1111f,
-                              .1111f, .1111f, .1111f};  
+                              .1111f, .1111f, .1111f};  //blur matrix 
+                              
+  private float[] elements1 = {-1.0f, -1.0f, -1.0f, 
+                               -1.0f, 8.0f, -1.0f,    //edge detection matrix
+                               -1.0f, -1.0f, -1.0f};
   
+  private float[] elements2 = {-2.0f, -1.0f, 0.0f,
+                               -1.0f, 1.0f, 1.0f,  //sharpen matrix
+                               0.0f, 1.0f, 2.0f};
+ 
   public static void main(String[] args) {       //main method all about the window
     System.out.println("Welcome to Image Expression!");
     System.out.println("----------------------------");
@@ -93,21 +101,34 @@ public class ImageBlur extends Applet { //subclass of Java's Object ----> Compon
     BufferedImage blur = new BufferedImage(image.getWidth(this), image.getWidth(this),BufferedImage.TYPE_INT_RGB); //make new BI for blurred image
 
     Scanner input = new Scanner(System.in);
-    System.out.println("If you would like your image to have SUPER blur, enter 1, if not enter 2: ");
-    int superBlur = input.nextInt();
+    System.out.println("If you would like your image to have super blur, enter 1: ");
+    System.out.println("If you would like your image to have light blur, enter 2: ");
+    System.out.println("If you would like your image to have edge detection, enter 3: ");
+    System.out.println("If you would like your image to be sharpened, enter 4: ");
+    int filter = input.nextInt();
     System.out.println();
     
     Kernel k = new Kernel(0, 0, elements); 
     
-    if (superBlur == 1) {
+    if (filter == 1) {
       elements = new float[400];                                        
       for (int i = 0; i < 400; i++)        // puts extreme blur 
         elements[i] = 1.0f/400.0f;      //to get super blur -- make a for loop that will change the pixels
     
       k = new Kernel(20, 20, elements);   //takes in kernel width, kernel height, float data
+      
     }
-    else {
+    
+    else if (filter == 2) {
       k = new Kernel(3, 3, elements);
+    }
+    
+    else if (filter == 3) {        
+      k = new Kernel(3, 3, elements1);
+    }
+    
+    else if (filter == 4) {
+      k = new Kernel(3, 3, elements2);
     }
     
     ConvolveOp c = new ConvolveOp(k);
